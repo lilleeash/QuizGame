@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuestionView: View {
+    @EnvironmentObject var triviaManager: TriviaManager
     var body: some View {
         ZStack {
             Color("background")
@@ -15,30 +16,32 @@ struct QuestionView: View {
             
             VStack(spacing: 20) {
                 
-                Text("1/10 Question")
+                Text("\(triviaManager.index + 1)/\(triviaManager.lenght) Question")
                     .font(.system(size: 34.0, weight: .bold, design: .rounded))
                     .foregroundColor(Color.accentColor)
                 
-                ProgressBar(progress: 30)
+                ProgressBar(progress: triviaManager.progress)
                 
-                Text("What is the most preferred image format used for logos in the Wikimedia database?")
+                Text(triviaManager.question)
                     .font(.system(size: 17.0, weight: .regular))
                     .foregroundColor(Color.accentColor)
                     .opacity(0.75)
                 
                 Spacer()
                 
-                AnswerRow(answer: AnswerModel(title: ".svg", isCorrect: true))
-                
-                AnswerRow(answer: AnswerModel(title: ".png", isCorrect: false))
-                
-                AnswerRow(answer: AnswerModel(title: ".jpeg", isCorrect: false))
-                
-                AnswerRow(answer: AnswerModel(title: ".pdf", isCorrect: false))
+                ForEach(triviaManager.answerChoice, id: \.id) { answer in
+                    AnswerRow(answer: answer)
+                        .environmentObject(triviaManager)
+                }
                 
                 Spacer()
-            
-                MainButton(width: 150, title: "next")
+                
+                Button {
+                    triviaManager.nextQuestion()
+                } label: {
+                    MainButton(width: 150, title: "next")
+                }
+                .disabled(!triviaManager.answerSelected)
                 
             }
             .padding()

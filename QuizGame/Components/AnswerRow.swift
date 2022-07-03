@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct AnswerRow: View {
-    var answer: AnswerModel
+    @EnvironmentObject var triviaManager: TriviaManager
     @State private var isSelected: Bool = false
+    var answer: AnswerModel
+    
+    
     var body: some View {
         HStack {
             Text(answer.title)
@@ -21,13 +24,16 @@ struct AnswerRow: View {
             }
         }
         .padding()
-        .foregroundColor(isSelected ? Color.accentColor : .gray)
+        .foregroundColor(triviaManager.answerSelected ? (isSelected ? Color.accentColor : .gray) : Color.accentColor)
         .frame(maxWidth: .infinity, maxHeight: 50, alignment: .leading)
         .background(Color.white)
         .cornerRadius(50)
         .shadow(color: Color.accentColor, radius: 1, x: 0.5, y: 0.5)
         .onTapGesture {
-            isSelected = true
+            if !triviaManager.answerSelected {
+                isSelected = true
+                triviaManager.selectAnswer(answer: answer)
+            }
         }
     }
 }
@@ -36,5 +42,6 @@ struct AnswerRow: View {
 struct AnswerRow_Previews: PreviewProvider {
     static var previews: some View {
         AnswerRow(answer: AnswerModel(title: "Single", isCorrect: false))
+            .environmentObject(TriviaManager())
     }
 }
