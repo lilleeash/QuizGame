@@ -44,6 +44,7 @@
 		7E0DC0D028718EA300BB39AB /* QuizGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0DC0D428718EA300BB39AB /* QuizGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGameUITests.swift; sourceTree = "<group>"; };
 		7E0DC0D628718EA300BB39AB /* QuizGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7E0DC0E32871A5A100BB39AB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 		7E0DC0AD28718E9800BB39AB = {
 			isa = PBXGroup;
 			children = (
+				7E0DC0E32871A5A100BB39AB /* .gitignore */,
 				7E0DC0B828718E9800BB39AB /* QuizGame */,
 				7E0DC0C928718EA300BB39AB /* QuizGameTests */,
 				7E0DC0D328718EA300BB39AB /* QuizGameUITests */,
